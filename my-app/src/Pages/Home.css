@@ -1,0 +1,109 @@
+.main-container {
+  height: calc(100vh - 12vh);
+  display: flex;
+  flex-direction: column;
+  font-family: "Fugaz One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.split-container {
+  flex: 1;
+  display: flex;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+}
+
+.left-panel {
+  padding: 16px;
+  width: 50%;
+}
+
+.right-panel {
+  width: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.left-right-space {
+  height: 100%;
+  width: 20%;
+}
+
+.panel-img {
+  height: calc(100vh - 12vh);
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.info-bar {
+  height: 60px;
+  width: 100%;
+  background: rgba(54, 51, 44, 0.3);
+}
+
+.default-button {
+  text-decoration: none; /*removes underline*/
+  color: inherit; /*inherits color from parent*/
+  color: white;
+  background-color: rgb(54, 51, 44);
+  border-radius: 30px;
+  padding: 05px 20px;
+  margin-left: -0.5vh;
+  border: none;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.default-button:hover {
+  background-color: rgb(54, 51, 44);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+  transform: scale(1.02);
+  transition: all 0.3s linear;
+}
+
+.default-button:active {
+  background-color: rgb(0, 0, 0);
+  /* color: rgb(191, 107, 24); */
+}
+
+/* .right-panel button {
+  border-radius: 100%;
+  background-color: rgba(54, 51, 44, 0.7);
+  color: white;
+  border: none;
+  height: 4vh;
+  width: 4vh;
+  font-size: larger;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+} */
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  border-radius: 100%;
+  background-color: rgba(54, 51, 44, 0.7);
+  color: white;
+  border: none;
+  height: 5vh;
+  width: 5vh;
+  font-size: larger;
+  border: none;
+}
+
+.nav-button:hover {
+  background-color: rgb(54, 51, 44);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s linear;
+}
+
+/* left arrow */
+.nav-button.prev {
+  left: 1rem; /* adjust as needed */
+}
+
+/* right arrow */
+.nav-button.next {
+  right: 1rem; /* adjust as needed */
+}

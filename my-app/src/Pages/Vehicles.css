@@ -1,0 +1,26 @@
+/* Vehicles.css */
+
+.main-container {
+  height: calc(100vh - 12vh);
+  display: flex; /* row by default */
+  flex-direction: row; /* ensure it’s horizontal */
+  font-family: "Fugaz One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.left-right-space {
+  flex: 0 0 20%; /* exactly 20% of the width */
+  /* remove: display, height, width */
+}
+
+.center-panel {
+  flex: 1; /* the remaining 60% */
+  /* display: flex; optional: center its CONTENT */
+  /* justify-content: center; horizontally center “asd” */
+  align-items: center; /* vertically center “asd” */
+  padding: 16px;
+}

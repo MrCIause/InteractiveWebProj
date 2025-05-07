@@ -1,0 +1,13 @@
+/* Footer.css */
+.footer {
+  height: 60px;
+  width: 100%; /* span full width */
+  background: rgba(54, 51, 44, 0.3);
+  display: flex;
+  align-items: center; /* vertical centering */
+  justify-content: center; /* horizontal centering */
+  flex-shrink: 0; /* don’t let it collapse */
+  font-family: "Fugaz One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
