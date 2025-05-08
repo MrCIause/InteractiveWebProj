@@ -43,7 +43,7 @@ export default function Vehicles() {
         ) : (
           users.map((user) => (
             <div key={user._id} className="user-card">
-              <h4>{user.userName}</h4>
+              <h4>{user.username}</h4>
               <p>ID: {user._id}</p>
               <p>Email: {user.email}</p>
             </div>

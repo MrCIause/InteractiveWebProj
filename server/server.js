@@ -1,12 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const { MongoClient, ServerApiApplication } = require("mongodb");
+const uri =
+  "mongodb+srv://adisan100:21072001@cluster0.asj75ph.mongodb.net/CarDealerShip?retryWrites=true&w=majority&appName=Cluster0";
 
 const app = express();
 
 // 1. Connect to the DB named “Users” (not “CarDealerShip”)
 mongoose
-  .connect("mongodb://localhost:27017/CarDealerShip")
-  .then(() => console.log("✅ MongoDB connected to “Users” database"))
+  .connect(uri)
+  .then(() => console.log("✅ MongoDB connected to Atlas database"))
   .catch((err) => {
     console.error("❌ MongoDB connection error:", err);
   });
@@ -14,8 +17,8 @@ mongoose
 // 2. Define your schema and force it to use the “Users” collection
 const UserSchema = new mongoose.Schema(
   {
-    userName: String,
-    pass: Number,
+    username: String,
+    code: String,
     email: String,
   },
   {
@@ -24,6 +27,26 @@ const UserSchema = new mongoose.Schema(
 );
 
 const User = mongoose.model("User", UserSchema);
+
+const VehicleSchema = new mongoose.Schema(
+  {
+    name: String,
+    description: String,
+    phonenumber: String,
+    price: String,
+    currency: String,
+    category: String,
+    tags: String,
+    km: String,
+    year: String,
+    manufacturer: String,
+  },
+  {
+    collection: "Vehicles",
+  }
+);
+
+const Vehicle = mongoose.model("Vehicle", VehicleSchema);
 
 // 3. Your GET route—no other changes
 app.get("/getUsers", async (req, res) => {
