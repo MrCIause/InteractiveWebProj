@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { MongoClient, ServerApiApplication } = require("mongodb");
+const multer = require("multer");
+const upload = multer({ dest: "uploads" });
+
 const uri =
   "mongodb+srv://adisan100:21072001@cluster0.asj75ph.mongodb.net/CarDealerShip?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -40,6 +43,7 @@ const VehicleSchema = new mongoose.Schema(
     km: String,
     year: String,
     manufacturer: String,
+    imgs: [{ data: Buffer, contentType: String }],
   },
   {
     collection: "Vehicles",
@@ -57,6 +61,18 @@ app.get("/getUsers", async (req, res) => {
     res.json({ users });
   } catch (err) {
     console.error("Error fetching users:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.get("/getVehicles", async (req, res) => {
+  console.log("GET vehicles called");
+  try {
+    const vehicles = await Vehicle.find({});
+    console.log("   → found users:", vehicles);
+    res.json({ vehicles });
+  } catch (err) {
+    console.error("Error fetching vehicles", err);
     res.status(500).json({ error: "Internal server error" });
   }
 });

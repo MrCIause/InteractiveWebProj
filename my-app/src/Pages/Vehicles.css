@@ -1,26 +1,188 @@
 /* Vehicles.css */
 
 .main-container {
-  height: calc(100vh - 12vh);
-  display: flex; /* row by default */
-  flex-direction: row; /* ensure it’s horizontal */
+  min-height: calc(100vh - 12vh);
+  display: flex;
+  flex-direction: row;
   font-family: "Fugaz One", sans-serif;
   font-weight: 400;
   font-style: normal;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
   width: 100%;
   margin: 0 auto;
+  overflow-y: auto;
 }
 
 .left-right-space {
-  flex: 0 0 20%; /* exactly 20% of the width */
-  /* remove: display, height, width */
+  flex: 0 0 20%;
 }
 
 .center-panel {
-  flex: 1; /* the remaining 60% */
-  /* display: flex; optional: center its CONTENT */
-  /* justify-content: center; horizontally center “asd” */
-  align-items: center; /* vertically center “asd” */
+  flex: 1;
   padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Card layout */
+.user-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  padding-bottom: 56px; /* space for sticky button */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Image row inside each card */
+.img-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Individual image cell */
+.img-cell {
+  flex: 1;
+  max-width: 30%;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* Image itself */
+.vehicle-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Optional wrapper if using fallback */
+.vehicle-image-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.image-fallback {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  padding: 8px;
+}
+
+.regular-text {
+  font-weight: normal;
+}
+
+/* Sidebar summary list */
+.summary-list {
+  padding: 16px;
+  background-color: #fafafa;
+  border-right: 1px solid #ddd;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.summary-list h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.summary-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.summary-list li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Green sticky "Go to" button */
+.go-to-button {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  right: 16px;
+  background-color: #28a745;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.go-to-button:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+.go-to-button:active {
+  background-color: #1e7e34;
+  transform: translateY(0);
+}
+
+/* Image popup overlay */
+.image-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.image-popup {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  z-index: 101;
+}
+
+.exit-hint {
+  color: #ddd;
+  font-size: 14px;
+  text-align: center;
+  font-family: Arial, sans-serif;
 }

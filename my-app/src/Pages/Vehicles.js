@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import VehicleImage from "../Components/VehicleImage";
+import ImagePopup from "../Components/ImagePopup";
 import "./Vehicles.css";
 
 export default function Vehicles() {
@@ -10,6 +12,8 @@ export default function Vehicles() {
   }
 
   const [users, setUsers] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
+  const [popupImage, setPopupImage] = useState(null);
 
   useEffect(() => {
     fetch("/getUsers")
@@ -22,6 +26,17 @@ export default function Vehicles() {
       });
   }, []);
 
+  useEffect(() => {
+    fetch("/getVehicles")
+      .then((res) => res.json())
+      .then((data) => {
+        setVehicles(data.vehicles);
+      })
+      .catch((err) => {
+        console.log("Error loading vehicles:", err);
+      });
+  }, []);
+
   const [cardHolder, setCardHolder] = useState([]);
 
   //   updateCardHolder((prev) =>
@@ -30,7 +45,7 @@ export default function Vehicles() {
   //     )
   //   ); //update
 
-  if (users === null) {
+  if (vehicles === null) {
     return <p>Loading...</p>;
   }
 
@@ -39,18 +54,41 @@ export default function Vehicles() {
       <div className="left-right-space"></div>
       <div className="center-panel">
         {users.length === 0 ? (
-          <p>No users were found.</p>
+          <p>No vehicles were found.</p>
         ) : (
-          users.map((user) => (
-            <div key={user._id} className="user-card">
-              <h4>{user.username}</h4>
-              <p>ID: {user._id}</p>
-              <p>Email: {user.email}</p>
+          vehicles.map((vehicle) => (
+            <div key={vehicle._id} className="user-card">
+              <h4>
+                {vehicle.name} {vehicle.year}
+              </h4>
+              <p>
+                Description:{" "}
+                <span className="regular-text">{vehicle.description}</span>
+              </p>
+              <p>Price: {vehicle.price}</p>
+              <p>Km: {vehicle.km}</p>
+              {Array.isArray(vehicle.img) && (
+                <div className="img-row">
+                  {vehicle.img.slice(0, 3).map((imgs, index) => (
+                    <div key={index} className="img-cell">
+                      <VehicleImage
+                        src={imgs.url}
+                        alt={imgs.alt}
+                        onClick={() => setPopupImage(imgs.url)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <button className="go-to-button">Go to</button>
             </div>
           ))
         )}
       </div>
       <div className="left-right-space"></div>
+      {popupImage && (
+        <ImagePopup src={popupImage} onClose={() => setPopupImage(null)} />
+      )}
     </div>
   );
 }
